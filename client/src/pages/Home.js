@@ -9,18 +9,30 @@ const Home = () => {
   const { loading, data } = useQuery(QUERY_PROFILES);
   const profiles = data?.profiles || [];
 
+  const styles = {
+    img: {
+      width: "100px",
+      height: "100px",
+    }};
+  
+
   return (
     <main>
       <div className="flex-row justify-center">
         <div className="col-12 col-md-10 my-3">
-          {loading ? (
+
+
+        
+
+
+          {/* {loading ? (
             <div>Loading...</div>
           ) : (
             <ProfileList
               profiles={profiles}
               title="Here's the current roster of friends..."
             />
-          )}
+          )} */}
         </div>
       </div>
     </main>
