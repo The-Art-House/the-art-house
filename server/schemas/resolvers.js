@@ -17,6 +17,9 @@ const resolvers = {
     profile: async (parent, { profileId }) => {
       return Profile.findOne({ _id: profileId });
     },
+
+    orders: async () => { return Order.find(); },
+
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
       if (context.user) {
@@ -33,15 +36,20 @@ const resolvers = {
 
       return { token, profile };
     },
-    addListing: async (parent, { imgURL, title, tags }, context) => {
+    addListing: async (parent, { imgURL, title, price, quantity, tags }, context) => {
       if (context.user) {
-        return await Listing.create({ imgURL, title, tags, userId: context.user._id });
+        return await Listing.create({ imgURL, title, price, quantity, tags, userId: context.user._id });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
     addOrder: async (parent, { listings, payment, isCompleted }) => {
       return await Order.create({ listings, payment, isCompleted });
     },
+
+    updateListingQuantity: async (parent, { listingId, quantity }) => {
+      return Listing.findOneAndUpdate(listingId, { quantity });
+    },
+
     login: async (parent, { email, password }) => {
       const profile = await Profile.findOne({ email });
 
@@ -59,24 +67,6 @@ const resolvers = {
       return { token, profile };
     },
 
-    // Add a third argument to the resolver to access data in our `context`
-    addSkill: async (parent, { profileId, skill }, context) => {
-      // If context has a `user` property, that means the user executing this mutation has a valid JWT and is logged in
-      if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: profileId },
-          {
-            $addToSet: { skills: skill },
-          },
-          {
-            new: true,
-            runValidators: true,
-          }
-        );
-      }
-      // If user attempts to execute this mutation and isn't logged in, throw an error
-      throw new AuthenticationError('You need to be logged in!');
-    },
     // Set up mutation so a logged in user can only remove their profile and no one else's
     removeProfile: async (parent, args, context) => {
       if (context.user) {
@@ -84,17 +74,7 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
-    // Make it so a logged in user can only remove a skill from their own profile
-    removeSkill: async (parent, { skill }, context) => {
-      if (context.user) {
-        return Profile.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { skills: skill } },
-          { new: true }
-        );
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
+
   },
 };
 

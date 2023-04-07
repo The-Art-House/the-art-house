@@ -18,6 +18,12 @@ const listingSchema = new Schema({
       type: String,
     },
   ],
+  price: {
+    type: Number,
+  },
+  quantity: {
+    type: Number,
+  },
 });
 
 
