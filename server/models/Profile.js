@@ -1,12 +1,14 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const Listing = require('./Listing');
+const Order = require('./Order');
 
 const profileSchema = new Schema({
+
   name: {
     type: String,
     required: true,
     unique: true,
-    trim: true,
   },
   email: {
     type: String,
@@ -19,10 +21,21 @@ const profileSchema = new Schema({
     required: true,
     minlength: 5,
   },
-  skills: [
+  style: [
     {
       type: String,
-      trim: true,
+    },
+  ],
+  listings: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Listing',
+    },
+  ],
+  orders: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Order',
     },
   ],
 });

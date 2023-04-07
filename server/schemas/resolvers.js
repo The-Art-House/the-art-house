@@ -1,11 +1,17 @@
 const { AuthenticationError } = require('apollo-server-express');
 const { Profile } = require('../models');
+const { Listing } = require('../models');
+const { Order } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     profiles: async () => {
       return Profile.find();
+    },
+
+    listings: async () => {
+      return Listing.find().populate('userId');
     },
 
     profile: async (parent, { profileId }) => {
@@ -26,6 +32,15 @@ const resolvers = {
       const token = signToken(profile);
 
       return { token, profile };
+    },
+    addListing: async (parent, { imgURL, title, tags }, context) => {
+      if (context.user) {
+        return await Listing.create({ imgURL, title, tags, userId: context.user._id });
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    addOrder: async (parent, { listings, payment, isCompleted }) => {
+      return await Order.create({ listings, payment, isCompleted });
     },
     login: async (parent, { email, password }) => {
       const profile = await Profile.findOne({ email });

@@ -1,53 +1,26 @@
 const { Schema, model } = require('mongoose');
-const bcrypt = require('bcrypt');
 
-const profileSchema = new Schema({
-  listing_id: {
-    type: String,
-    required: true,
-    unique: true,
-    trim: true,
-  },
-  username: {
-    type: String,
-    required: true,
-    unique: true,
-    match: [/.+@.+\..+/, 'Must match an email address!'],
+const listingSchema = new Schema({
+
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: 'Profile',
   },
   imgURL: {
     type: String,
-    required: true,
-    minlength: 5,
   },
-  Title: [
+  title:
+  {
+    type: String,
+  },
+  tags: [
     {
       type: String,
-      trim: true,
-    },
-  ],
-  Tags: [
-    {
-      type: String,
-      trim: true,
     },
   ],
 });
 
-// set up pre-save middleware to create password
-profileSchema.pre('save', async function (next) {
-  if (this.isNew || this.isModified('password')) {
-    const saltRounds = 10;
-    this.password = await bcrypt.hash(this.password, saltRounds);
-  }
 
-  next();
-});
+const Listing = model('Listing', listingSchema);
 
-// compare the incoming password with the hashed password
-profileSchema.methods.isCorrectPassword = async function (password) {
-  return bcrypt.compare(password, this.password);
-};
-
-const Profile = model('Profile', profileSchema);
-
-module.exports = Profile;
+module.exports = Listing;
