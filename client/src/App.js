@@ -10,7 +10,8 @@ import Login from "./pages/Login";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
-import Gallary from "./pages/Gallary";
+// gallery page
+import Gallery from "./pages/Gallery";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -19,6 +20,7 @@ const httpLink = createHttpLink({
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   const token = localStorage.getItem("id_token");
+
   // return the headers to the context so httpLink can read them
   return {
     headers: {
@@ -46,7 +48,7 @@ function App() {
               <Route path="/signup" element={<Signup />} />
               <Route path="/me" element={<Profile />} />
               <Route path="/profiles/:profileId" element={<Profile />} />
-              <Route path="/" element={<Gallary />} />
+              <Route path="/" element={<Gallery />} />
             </Routes>
           </div>
           <Footer />

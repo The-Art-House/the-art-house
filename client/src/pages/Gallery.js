@@ -2,7 +2,7 @@ import React from "react";
 
 // import listings from users
 
-const Gallary = () => {
+const Gallery = () => {
   const listings = [
     { id: 0, username: "user0", imgURL: "http://via.placeholder.com/640x360", title: "title", description: "description for my art piece", price: "$1,000,000.00", quantity: "1" },
     { id: 1, username: "user1", imgURL: "http://via.placeholder.com/640x360", title: "title", description: "description for my art piece", price: "$1,000,000.00", quantity: "1" },
@@ -60,10 +60,10 @@ const Gallary = () => {
     );
   };
 
-  const createGallary = () => {
+  const createGallery = () => {
     return (
       <div className="flex-column align-center">
-        <h3>Gallary</h3>
+        <h3>Gallery</h3>
         <div className="card flex-row justify-space-between">
           {listings.map((listing) => {
             return <img src={listing.imgURL} style={{ margin: "5px", width: "350px", height: "200px" }}></img>;
@@ -76,9 +76,9 @@ const Gallary = () => {
   return (
     <div>
       {/* {itemCard(0)} */}
-      {/* {createGallary()} */}
+      {/* {createGallery()} */}
     </div>
   );
 };
 
-export default Gallary;
+export default Gallery;
