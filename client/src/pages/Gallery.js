@@ -4,8 +4,7 @@ import { useQuery } from "@apollo/client";
 import { QUERY_ALL_LISTINGS, QUERY_PROFILES } from "../utils/queries";
 
 const Gallery = () => {
-
-const { loading, data } = useQuery(QUERY_ALL_LISTINGS);
+  const { loading, data } = useQuery(QUERY_ALL_LISTINGS);
   const listings = data?.listings || [];
   const navigate = useNavigate();
   const styles = {
@@ -16,10 +15,8 @@ const { loading, data } = useQuery(QUERY_ALL_LISTINGS);
     },
   };
 
-
-
   function handleClicked(event) {
-    navigate(`listing/${event.target.id}`)
+    navigate(`listing/${event.target.id}`);
   }
 
   return (

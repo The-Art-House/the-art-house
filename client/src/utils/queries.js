@@ -19,7 +19,14 @@ export const QUERY_SINGLE_PROFILE = gql`
       email
       name
       password
-      skills
+      listings {
+        _id
+        imgURL
+        price
+        quantity
+        tags
+        title
+      }
     }
   }
 `;
@@ -48,7 +55,14 @@ export const QUERY_ME = gql`
       email
       name
       password
-      skills
+      listings {
+        _id
+        imgURL
+        price
+        quantity
+        tags
+        title
+      }
     }
   }
 `;
