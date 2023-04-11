@@ -1,0 +1,26 @@
+[
+  {
+    "userId": "6431c197d82ef6cec3030a81",
+    "imgURL": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg",
+    "title": "The Great Wave off Kanagawa",
+    "tags": ["ukiyo-e", "woodblock"],
+    "price": 100000.0,
+    "quantity": 1
+  },
+  {
+    "userId": "64337eb6a95b4e3b60c9ca2f",
+    "imgURL": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg",
+    "title": "Old Guitarist",
+    "tags": ["Oil on Panel", "Expressionism"],
+    "price": 100000.0,
+    "quantity": 1
+  },
+  {
+    "userId": "64337eb6a95b4e3b60c9ca30",
+    "imgURL": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg",
+    "title": "The Scream",
+    "tags": ["Oil", "Tempera", "Pastel", "Crayon", "Cardboard", "Expressionism"],
+    "price": 100000.0,
+    "quantity": 1
+  }
+]

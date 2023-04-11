@@ -1,8 +1,8 @@
-const { AuthenticationError } = require('apollo-server-express');
-const { Profile } = require('../models');
-const { Listing } = require('../models');
-const { Order } = require('../models');
-const { signToken } = require('../utils/auth');
+const { AuthenticationError } = require("apollo-server-express");
+const { Profile } = require("../models");
+const { Listing } = require("../models");
+const { Order } = require("../models");
+const { signToken } = require("../utils/auth");
 
 const resolvers = {
   Query: {
@@ -11,21 +11,27 @@ const resolvers = {
     },
 
     listings: async () => {
-      return Listing.find().populate('userId');
+      return Listing.find().populate("userId");
     },
 
     profile: async (parent, { profileId }) => {
       return Profile.findOne({ _id: profileId });
     },
 
-    orders: async () => { return Order.find(); },
+    listing: async (parent, { listingId }) => {
+      return Listing.findOne({ _id: listingId });
+    },
+
+    orders: async () => {
+      return Order.find();
+    },
 
     // By adding context to our query, we can retrieve the logged in user without specifically searching for them
     me: async (parent, args, context) => {
       if (context.user) {
         return Profile.findOne({ _id: context.user._id });
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
   },
 
@@ -40,7 +46,7 @@ const resolvers = {
       if (context.user) {
         return await Listing.create({ imgURL, title, price, quantity, tags, userId: context.user._id });
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
     addOrder: async (parent, { listings, payment, isCompleted }) => {
       return await Order.create({ listings, payment, isCompleted });
@@ -54,13 +60,13 @@ const resolvers = {
       const profile = await Profile.findOne({ email });
 
       if (!profile) {
-        throw new AuthenticationError('No profile with this email found!');
+        throw new AuthenticationError("No profile with this email found!");
       }
 
       const correctPw = await profile.isCorrectPassword(password);
 
       if (!correctPw) {
-        throw new AuthenticationError('Incorrect password!');
+        throw new AuthenticationError("Incorrect password!");
       }
 
       const token = signToken(profile);
@@ -72,9 +78,8 @@ const resolvers = {
       if (context.user) {
         return Profile.findOneAndDelete({ _id: context.user._id });
       }
-      throw new AuthenticationError('You need to be logged in!');
+      throw new AuthenticationError("You need to be logged in!");
     },
-
   },
 };
 
