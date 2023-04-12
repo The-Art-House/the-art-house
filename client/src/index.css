@@ -5,6 +5,22 @@
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
  */
+* {
+  font-family: Arial, Helvetica, sans-serif!important;
+}
+
+.headingIcon {
+  background-image: url("https://t4.ftcdn.net/jpg/02/31/80/07/360_F_231800782_XmCI68ogKBHYg1ObcbXgrYK00436gIn4.jpg");
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: contain;
+
+}
+
+.gallaryImages:hover {
+  opacity: 0.5;
+}
+
 html {
   line-height: 1.15;
   /* 1 */
@@ -924,7 +940,7 @@ a:hover {
 }
 
 .bg-info {
-  background-color: #1bbc9b !important;
+  /* background-color: #1bbc9b !important; */
 }
 
 .bg-danger {
@@ -1011,13 +1027,24 @@ a:hover {
   text-align: center;
 }
 
+.btn-cart{
+
+}
+
 .btn.btn-primary {
-  background-color: #2d3e50;
-  color: #d9e9e8;
+  /* background-color: #2d3e50; */
+  background-color: black;
+  /* color: #d9e9e8; */
+  color: white;
+  border-radius: 0;
 }
 
 .btn.btn-primary:hover {
-  background-color: #57779a;
+  /* background-color: #57779a; */
+
+  background-color: darkgray;
+  /* color: black; */
+  
 }
 
 .btn.btn-danger {
@@ -1039,12 +1066,17 @@ a:hover {
 }
 
 .btn.btn-light {
-  background-color: #d9e9e8;
-  color: #1a1a1a;
+  /* background-color: #d9e9e8; */
+  /* color: #1a1a1a; */
+  background-color: lightgray;
+  color: black;
+  border-radius: 0;
 }
 
 .btn.btn-light:hover {
-  background-color: #84b8b4;
+  /* background-color: #84b8b4; */
+  background-color: darkgray;
+  color: white;
 }
 
 .btn.btn-dark {

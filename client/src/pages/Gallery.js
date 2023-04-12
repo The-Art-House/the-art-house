@@ -20,13 +20,13 @@ const Gallery = () => {
   }
 
   return (
-    <div className="flex-column align-center">
-      <h3>Gallery</h3>
-      <div className="card flex-row justify-space-between">
+    <div className="flex-column">
+      <h3 className="align-left w-25">gallery</h3>
+      <div className=" flex-row justify-space-between flex-wrap">
         {listings &&
           listings.map((listing) => (
             <div>
-              <img src={listing.imgURL} id={listing._id} onClick={handleClicked} style={{ margin: "5px", width: "350px", height: "200px" }} />
+              <img src={listing.imgURL} className="gallaryImages" id={listing._id} onClick={handleClicked} style={{ margin: "5px", width: "350px", height: "200px", cursor: "pointer" }} />
             </div>
           ))}
       </div>

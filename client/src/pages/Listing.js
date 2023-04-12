@@ -1,10 +1,10 @@
 import React from "react";
 import { useQuery } from "@apollo/client";
 
-import {  QUERY_SINGLE_LISTING } from "../utils/queries";
+import { QUERY_SINGLE_LISTING } from "../utils/queries";
 
 const Home = () => {
-  const { loading, data } = useQuery( QUERY_SINGLE_LISTING);
+  const { loading, data } = useQuery(QUERY_SINGLE_LISTING);
   const listing = data?.listing || [];
 
   const styles = {
@@ -15,7 +15,7 @@ const Home = () => {
   };
 
   return (
-    <div className="card d-flex flex-column">
+    <div className="d-flex flex-column">
       <div className="card-body d-flex flex-column align-center">
         <img src={listing.imgURL} alt={listing.title} style={styles.img} />
         <div className="flex-row">
@@ -39,7 +39,7 @@ const Home = () => {
           <p>{listing.quantity}</p>
         </div>
         <div>
-          <button>Add to Cart</button>
+          <button className="btn btn-cart">Add to Cart</button>
         </div>
       </div>
     </div>
