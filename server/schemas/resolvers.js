@@ -44,7 +44,8 @@ const resolvers = {
     },
     addListing: async (parent, { imgURL, title, price, quantity, tags }, context) => {
       if (context.user) {
-        return await Listing.create({ imgURL, title, price, quantity, tags, userId: context.user._id });
+        const listing = await Listing.create({ imgURL, title, price, quantity, tags, userId: context.user._id });
+        await Profile.findOneAndUpdate({ _id: context.user._id }, { $push: { listings: listing._id } });
       }
       throw new AuthenticationError("You need to be logged in!");
     },
