@@ -21,7 +21,7 @@ const Gallery = () => {
 
   return (
     <div className="flex-column">
-      <h3 className="align-left w-25">gallery</h3>
+      {/* <h3 className="align-left w-25">gallery</h3> */}
       <div className=" flex-row justify-space-between flex-wrap">
         {listings &&
           listings.map((listing) => (
