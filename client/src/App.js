@@ -11,6 +11,10 @@ import Listing from "./pages/Listing";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+// new
+import CreateListing from "./pages/CreateListing";
+import Cart from "./pages/Cart";
+
 // gallery page
 import Gallery from "./pages/Gallery";
 // cart state
@@ -55,6 +59,8 @@ function App() {
                 <Route path="/profiles/:profileId" element={<Profile />} />
                 <Route path="/listing/:listingId" element={<Listing />} />
                 <Route path="/" element={<Gallery />} />
+                <Route path="/createListing" element={<CreateListing />}/>
+                <Route path="/cart" element={<Cart />} />
               </Routes>
             </div>
             <Footer />

@@ -80,7 +80,7 @@ const Profile = () => {
 
   return (
     <div className="flex-column align-center">
-      <h3>Users Gallery</h3>
+      <h3>my gallery</h3>
       <div className="card flex-row justify-space-between">
         {profiles.listings.map((listing) => (
           <div key={listing.id}>
@@ -89,7 +89,7 @@ const Profile = () => {
         ))}
       </div>
       <div>
-        <form>
+        <form className="d-flex flex-column">
           <label>Title</label>
           <input type="text" name="title" onChange={handleChange} value={formState.title} />
           <label>Tags</label>

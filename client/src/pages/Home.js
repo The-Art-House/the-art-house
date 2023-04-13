@@ -1,9 +1,10 @@
-import React from 'react';
-import { useQuery } from '@apollo/client';
+import React from "react";
+import { useQuery } from "@apollo/client";
+import { Link } from "react-router-dom";
 
-import ProfileList from '../components/ProfileList';
+import ProfileList from "../components/ProfileList";
 
-import { QUERY_PROFILES } from '../utils/queries';
+import { QUERY_PROFILES } from "../utils/queries";
 
 const Home = () => {
   const { loading, data } = useQuery(QUERY_PROFILES);
@@ -13,8 +14,8 @@ const Home = () => {
     img: {
       width: "100px",
       height: "100px",
-    }};
-  
+    },
+  };
 
   return (
     <main>
