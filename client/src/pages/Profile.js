@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Navigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Navigate } from "react-router-dom";
 import { useQuery, useMutation } from "@apollo/client";
 
 import SkillsList from "../components/SkillsList";
@@ -73,6 +72,7 @@ const Profile = () => {
       const { data } = await addListing({
         variables: { ...formState },
       });
+      window.location.reload();
     } catch (e) {
       console.error(e);
     }

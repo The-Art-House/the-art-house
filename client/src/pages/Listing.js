@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
+import { useParams } from "react-router-dom";
+
 //Heavy lifitng of cart action within this script
 
 import { QUERY_SINGLE_LISTING } from "../utils/queries";
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_SINGLE_LISTING);
+  const { listingId } = useParams();
+  const { loading, data } = useQuery(QUERY_SINGLE_LISTING, { variables: { listingId: listingId } });
   const listing = data?.listing || [];
 
   const styles = {
@@ -18,7 +21,9 @@ const Home = () => {
       border: "1px solid black",
     },
   };
-
+  if (loading) {
+    return <div>Loading...</div>;
+  }
   return (
     <div className="d-flex flex-column align-center">
       <div className=" d-flex flex-row w-100 justify-space-between-lg" style={styles.border}>
@@ -32,11 +37,7 @@ const Home = () => {
           </div>
           <div className="flex-row">
             <p>Artist:</p>
-            <p>{listing.username}</p>
-          </div>
-          <div className="flex-row">
-            <p>Description:</p>
-            <p>{listing.description}</p>
+            <p>{listing.userId.name}</p>
           </div>
           <div className="flex-row">
             <p>Price:</p>

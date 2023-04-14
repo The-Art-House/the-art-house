@@ -19,7 +19,7 @@ const resolvers = {
     },
 
     listing: async (parent, { listingId }) => {
-      return Listing.findOne({ _id: listingId });
+      return Listing.findOne({ _id: listingId }).populate("userId");
     },
 
     orders: async () => {
@@ -43,11 +43,8 @@ const resolvers = {
       return { token, profile };
     },
     addListing: async (parent, { imgURL, title, price, quantity, tags }, context) => {
-      if (context.user) {
-        const listing = await Listing.create({ imgURL, title, price, quantity, tags, userId: context.user._id });
-        await Profile.findOneAndUpdate({ _id: context.user._id }, { $push: { listings: listing._id } });
-      }
-      throw new AuthenticationError("You need to be logged in!");
+      const listing = await Listing.create({ imgURL, title, price, quantity, tags, userId: context.user._id });
+      await Profile.findOneAndUpdate({ _id: context.user._id }, { $push: { listings: listing._id } });
     },
     addOrder: async (parent, { listings, payment, isCompleted }) => {
       return await Order.create({ listings, payment, isCompleted });
