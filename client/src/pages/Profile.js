@@ -52,32 +52,6 @@ const Profile = () => {
     navigate(`/listing/${event.target.id}`);
   }
 
-  // update state based on form input changes
-  const handleChange = (event) => {
-    let { name, value } = event.target;
-    if (name === "price" || name === "quantity") {
-      value = parseInt(value);
-    }
-    setFormState({
-      ...formState,
-      [name]: value,
-    });
-  };
-
-  const handleFormSubmit = async (event) => {
-    event.preventDefault();
-    console.log(formState);
-
-    try {
-      const { data } = await addListing({
-        variables: { ...formState },
-      });
-      window.location.reload();
-    } catch (e) {
-      console.error(e);
-    }
-  };
-
   return (
     <div className="flex-column align-center">
       <h3>my gallery</h3>
@@ -89,22 +63,9 @@ const Profile = () => {
         ))}
       </div>
       <div>
-        <form className="d-flex flex-column">
-          <label>Title</label>
-          <input type="text" name="title" onChange={handleChange} value={formState.title} />
-          <label>Tags</label>
-          {/* Will need JS function splitting the tags by comma */}
-          <input type="string" name="tags" onChange={handleChange} value={formState.tags} />
-          <label>Price</label>
-          <input type="number" name="price" onChange={handleChange} value={formState.price} />
-          <label>Quantity</label>
-          <input type="number" name="quantity" onChange={handleChange} value={formState.quantity} />
-          <label>Image URL</label>
-          <input name="imgURL" onChange={handleChange} value={formState.imgURL} />
-          <button type="submit" onClick={handleFormSubmit}>
-            Submit
-          </button>
-        </form>
+        <button className="btn btn-primary" onClick={() => navigate("/createlisting")}>
+          Create Listing
+        </button>
       </div>
     </div>
   );

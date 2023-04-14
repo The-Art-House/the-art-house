@@ -1,8 +1,13 @@
 import React, { useState } from "react";
+import { ADD_LISTING } from "../utils/mutations";
+import { useQuery, useMutation } from "@apollo/client";
 
 const CreateListing = () => {
   const styles = {
-    img: {},
+    img: {
+      width: "250px",
+      height: "200px",
+    },
     border: {
       border: "1px solid black",
     },
@@ -15,47 +20,89 @@ const CreateListing = () => {
 
   const [imageState, setImageState] = useState();
 
-  function handleChange(event) {
-    setImageState(event.target.value);
-  }
+  const [formState, setFormState] = useState({
+    title: "",
+    tags: "",
+    price: "",
+    quantity: "",
+    imgURL: "",
+  });
+  const [addListing, { error, items }] = useMutation(ADD_LISTING);
+
+  // function handleChange(event) {
+  //   setImageState(event.target.value);
+  // }
+
+  // function handleClicked(event) {
+  //   navigate(`/listing/${event.target.id}`);
+  // }
+
+  // update state based on form input changes
+  const handleChange = (event) => {
+    let { name, value } = event.target;
+    if (name === "price" || name === "quantity") {
+      value = parseInt(value);
+    }
+    setFormState({
+      ...formState,
+      [name]: value,
+    });
+    if (name === "imgURL") {
+      setImageState(value);
+    }
+  };
+
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
+    console.log(formState);
+
+    try {
+      const { data } = await addListing({
+        variables: { ...formState },
+      });
+      window.location.reload();
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     // <div className="">
     <div>
       <div className="d-flex flex-column align-center">
         <h3 className="" style={styles.border}>
-          create new listing
+          Create New Listing
         </h3>
         {/* <div className=" d-flex flex-row w-75 justify-space-between-lg" style={styles.border}> */}
         <div className=" d-flex flex-row w-75 justify-space-around-md text-center" style={styles.border}>
-          <div className="left-input w-50 text-center">
-            <div className="flex-row">
-              <p>Title:</p>
-              <input type=""></input>
-            </div>
-            <div className="flex-row">
-              <p>Description:</p>
-              <input></input>
-            </div>
-            <div className="flex-row">
-              <p>Price:</p>
-              <input></input>
-            </div>
-            <div className="flex-row">
-              <p>Quantity:</p>
-              <input></input>
-            </div>
-            <div className="flex-row">
-              <p>Image URL:</p>
-              <input></input>
-            </div>
+          <div>
+            <form className="d-flex flex-column">
+              <label>Title</label>
+              <input type="text" name="title" onChange={handleChange} value={formState.title} />
+              <label>Tags</label>
+              {/* Will need JS function splitting the tags by comma */}
+              <input type="string" name="tags" onChange={handleChange} value={formState.tags} />
+              <label>Price</label>
+              <input type="number" name="price" onChange={handleChange} value={formState.price} />
+              <label>Quantity</label>
+              <input type="number" name="quantity" onChange={handleChange} value={formState.quantity} />
+              <label>Image URL</label>
+              <input name="imgURL" onChange={handleChange} value={formState.imgURL} />
+              {/* <button type="submit" onClick={handleFormSubmit}> */}
+              {/* Submit */}
+              {/* </button> */}
+            </form>
           </div>
 
           {/* image preview */}
-          <div className="right-box w-25 align-center" style={styles.imgPreview}></div>
+          <div className="right-box w-25 align-center" style={styles.imgPreview}>
+            <img className="w-100 h-full" src={imageState} alt="preview" />
+          </div>
         </div>
         <div>
-          <button className="btn btn-light btn-cart">Create Listing</button>
+          <button type="submit" onClick={handleFormSubmit} className="btn btn-primary btn-cart">
+            Create Listing
+          </button>
         </div>
       </div>
     </div>
