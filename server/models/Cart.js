@@ -8,18 +8,19 @@ const cartSchema = new Schema({
       ref: 'Listing'
     },
     quantity: {
-      type: Number,
+      type: Int,
+      required: true,
+      min: 1,
+    },
+    price: {
+      type: Schema.Types.ObjectId,
+      ref: 'Listing.price'
       required: true,
       min: 1,
     },
   }],
-  total_price: {
-    type: Number,
-    required: true,
-    min: 0
-  },
   payment: {
-    type: Number,
+    type: Int,
   },
   isCompleted:
   {

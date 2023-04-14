@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
+//Heavy lifitng of cart action within this script
 
-import {  QUERY_SINGLE_LISTING } from "../utils/queries";
+import { QUERY_SINGLE_LISTING } from "../utils/queries";
 
 const Home = () => {
-  const { loading, data } = useQuery( QUERY_SINGLE_LISTING);
+  const { loading, data } = useQuery(QUERY_SINGLE_LISTING);
   const listing = data?.listing || [];
 
   const styles = {

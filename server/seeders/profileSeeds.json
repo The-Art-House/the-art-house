@@ -4,7 +4,9 @@
     "email": "hokusai@gmail.com",
     "password": "password123!",
     "style": "Japanese",
-    "listings": ["6431c4148c5eb9d142bd6a85"],
+    "listings": [
+      "6431c4148c5eb9d142bd6a85"
+    ],
     "orders": []
   },
   {
@@ -12,7 +14,9 @@
     "email": "pablop@tgmail.com",
     "password": "password123!",
     "style": "Cubism",
-    "listings": ["6434bbb14fb850a92677c2ec"],
+    "listings": [
+      "6435f5a50474e19b600d0d90"
+    ],
     "orders": []
   },
   {
