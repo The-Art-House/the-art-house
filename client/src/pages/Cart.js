@@ -2,6 +2,12 @@ import React from "react";
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
 
+// import { QUERY_SINGLE_LISTING } from "../utils/queries";
+// in listings page throw info into cartstate
+// in cart page pull info from cartstate
+// loop through cartstate and display info
+// checkout button will clear cartstate
+
 const Cart = () => {
   //   tempcart is a placeholder for the Cart State
   const tempCart = [
