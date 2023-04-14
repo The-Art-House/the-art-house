@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
+//Heavy lifitng of cart action within this script
 
 import { QUERY_SINGLE_LISTING } from "../utils/queries";
 
