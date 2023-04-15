@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
 import { useParams } from "react-router-dom";
+import { useCartContext, CartProvider } from "../utils/cartContext";
 
 //Heavy lifitng of cart action within this script
 
 import { QUERY_SINGLE_LISTING } from "../utils/queries";
 
 const Home = () => {
+  // state
+  const [state, dispatch] = useCartContext();
+
   const { listingId } = useParams();
   const { loading, data } = useQuery(QUERY_SINGLE_LISTING, { variables: { listingId: listingId } });
   const listing = data?.listing || [];
@@ -21,6 +25,21 @@ const Home = () => {
       border: "1px solid black",
     },
   };
+
+  function addtoCart() {
+    console.log(state);
+    dispatch({
+      type: "ADD_TO_CART",
+      item: {
+        id: listing._id,
+        item: listing.title,
+        price: listing.price,
+        quantity: 1,
+      },
+    });
+    console.log(state);
+  }
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -48,7 +67,7 @@ const Home = () => {
             <p>{listing.quantity}</p>
           </div>
           <div>
-            <button className="btn btn-light btn-cart">Add to Cart</button>
+            <button className="btn btn-light btn-cart" onClick={addtoCart}>Add to Cart</button>
           </div>
         </div>
       </div>

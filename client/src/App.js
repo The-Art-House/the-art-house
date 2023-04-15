@@ -18,7 +18,7 @@ import Cart from "./pages/Cart.js";
 // gallery page
 import Gallery from "./pages/Gallery";
 // cart state
-import CartProvider from "./utils/cartContext";
+import {CartProvider} from "./utils/cartContext";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -45,10 +45,10 @@ const client = new ApolloClient({
 
 function App() {
   return (
-    <CartProvider>
-      <ApolloProvider client={client}>
+    <ApolloProvider client={client}>
         <Router>
           <div className="flex-column justify-flex-start min-100-vh">
+        <CartProvider>
             <Header />
             <div className="container">
               <Routes>
@@ -64,10 +64,10 @@ function App() {
               </Routes>
             </div>
             <Footer />
+    </CartProvider>
           </div>
         </Router>
       </ApolloProvider>
-    </CartProvider>
   );
 }
 
