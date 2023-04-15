@@ -17,7 +17,7 @@ const Header = () => {
     primaryButton: {
       backgroundColor: "black!important",
       color: "white!important",
-    }
+    },
   };
 
   return (
@@ -25,9 +25,7 @@ const Header = () => {
       <div className="container flex-row justify-space-between-lg justify-center align-center text-center">
         <Link className="text-dark flex-row justify-center" style={styles.homeIcon} to="/">
           {/* <div className="headingIcon w-25 h-25"></div> */}
-          <h1 className="m-2 theHeader">the</h1>
-          <h1 className="m-2 artHeader">art</h1>
-          <h1 className="m-2 houseHeader">house</h1>
+          <h1 className="m-2 theHeader">the art house</h1>
         </Link>
         {/* <p className="m-0" style={{ fontSize: '1.75rem', fontWeight: '700' }}>
           Meet your new programming pals.
