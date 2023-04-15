@@ -13,7 +13,7 @@ import Footer from "./components/Footer";
 
 // new
 import CreateListing from "./pages/CreateListing";
-import Cart from "./pages/Cart";
+import Cart from "./pages/Cart.js";
 
 // gallery page
 import Gallery from "./pages/Gallery";
@@ -59,7 +59,7 @@ function App() {
                 <Route path="/profiles/:profileId" element={<Profile />} />
                 <Route path="/listing/:listingId" element={<Listing />} />
                 <Route path="/" element={<Gallery />} />
-                <Route path="/createListing" element={<CreateListing />}/>
+                <Route path="/createListing" element={<CreateListing />} />
                 <Route path="/cart" element={<Cart />} />
               </Routes>
             </div>
