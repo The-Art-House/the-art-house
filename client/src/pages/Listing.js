@@ -31,7 +31,7 @@ const Home = () => {
       "background-color": "gray",
     },
     border: {
-      border: "1px solid black",
+      border: "5px solid black",
     },
   };
 
@@ -61,7 +61,7 @@ const Home = () => {
           <img src={listing.imgURL} alt={listing.title} style={styles.img} />
         </div>
         <div className="d-flex flex-column justify-space-between w-50">
-          <div className="card w-75 m-auto">
+          <div className="w-75 m-auto" style={styles.border}>
             <div className="w-50 m-auto text-center">
               {/* <h5>Title:</h5> */}
               <h1>{listing.title}</h1>
