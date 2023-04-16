@@ -28,27 +28,45 @@ const Cart = () => {
     navigate("/checkout");
   }
 
-  function handleRemovedItem(event) {
-    // tempCart.map((item, index) => {
-    //   if (item._id === event.target.id) {
-    //     tempCart.splice(index, 1);
-    //   }
-    // });
-    // localStorage.setItem("cart", JSON.stringify(tempCart));
-    // window.location.reload();
-    const itemId = event.target.id;
-    const updatedCart = cart.filter((item) => item._id !== itemId);
-    setCart(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  }
+  // old
+  // function handleRemovedItem(event) {
+  //   const itemId = event.target.id;
+  //   const updatedCart = cart.filter((item) => item._id !== itemId);
+  //   setCart(updatedCart);
+  //   localStorage.setItem("cart", JSON.stringify(updatedCart));
+  // }
 
+  // new
+  function handleRemovedItem(event) {
+    const itemId = event.target.id;
+    const index = cart.findIndex((item) => item._id === itemId);
+    if (index > -1) {
+      const updatedCart = [...cart];
+      updatedCart.splice(index, 1);
+      setCart(updatedCart);
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+    }
+  }
+  
+
+  // old
+  // function totalPrice() {
+  //   let total = 0;
+  //   tempCart.forEach((item) => {
+  //     total += item.price;
+  //   });
+  //   return total;
+  // }
+
+  // new
   function totalPrice() {
     let total = 0;
-    tempCart.forEach((item) => {
+    cart.forEach((item) => {
       total += item.price;
     });
     return total;
   }
+  
 
   return (
     <div className="w-100">
