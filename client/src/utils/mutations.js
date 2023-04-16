@@ -44,6 +44,22 @@ export const REMOVE_SKILL = gql`
   }
 `;
 
+// export const UPDATE_LISTING_QUANTITY = gql`
+//   mutation updateListingQuantity($listingId: ID!, $quantity: Int!) {
+//     updateListingQuantity(listingId: $listingId, quantity: $quantity) {
+//       _id
+//       imgURL
+//       price
+//       quantity
+//       tags
+//       title
+//       userId {
+//         _id
+//         name
+//       }
+//   }
+// `;
+
 export const ADD_LISTING = gql`
   mutation addListing($imgURL: String, $title: String, $price: Float, $quantity: Int, $tags: [String]) {
     addListing(imgURL: $imgURL, title: $title, price: $price, quantity: $quantity, tags: $tags) {

@@ -1,45 +1,14 @@
 import React from "react";
 import { useState } from "react";
 import { useQuery } from "@apollo/client";
-
-// import { QUERY_SINGLE_LISTING } from "../utils/queries";
-// in listings page throw info into cartstate
-// in cart page pull info from cartstate
-// loop through cartstate and display info
-// checkout button will clear cartstate
+import { useNavigate, useParams, Navigate } from "react-router-dom";
 
 const Cart = () => {
-  //   tempcart is a placeholder for the Cart State
-  const tempCart = [
-    {
-      _id: "1",
-      imgURL: "http://via.placeholder.com/250x200",
-      title: "test artwork title",
-      price: 10.0,
-      quantity: 1,
-    },
-    {
-      _id: "2",
-      imgURL: "http://via.placeholder.com/250x200",
-      title: "test artwork title",
-      price: 10.0,
-      quantity: 1,
-    },
-    {
-      _id: "3",
-      imgURL: "http://via.placeholder.com/250x200",
-      title: "test artwork title",
-      price: 10.0,
-      quantity: 1,
-    },
-    {
-      _id: "4",
-      imgURL: "http://via.placeholder.com/250x200",
-      title: "test artwork title",
-      price: 10.0,
-      quantity: 1,
-    },
-  ];
+  // let cart = JSON.parse(localStorage.getItem("cart"));
+  const navigate = useNavigate();
+
+  let tempCart = JSON.parse(localStorage.getItem("cart"));
+  const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")));
 
   const styles = {
     img: {
@@ -56,11 +25,21 @@ const Cart = () => {
   };
 
   function handleCheckout() {
-    alert("checked out!");
+    navigate("/checkout");
   }
 
-  function handleRemovedItem() {
-    alert("removed item!");
+  function handleRemovedItem(event) {
+    // tempCart.map((item, index) => {
+    //   if (item._id === event.target.id) {
+    //     tempCart.splice(index, 1);
+    //   }
+    // });
+    // localStorage.setItem("cart", JSON.stringify(tempCart));
+    // window.location.reload();
+    const itemId = event.target.id;
+    const updatedCart = cart.filter((item) => item._id !== itemId);
+    setCart(updatedCart);
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
   }
 
   function totalPrice() {
@@ -78,24 +57,28 @@ const Cart = () => {
         {tempCart.map((item) => (
           <div className="cartContent d-flex flex-row justify-space-between-md">
             <div className="cartItemImg">
-              <img src={"http://via.placeholder.com/250x200"} />
+              <img src={item.imgURL} />
             </div>
             <div className="cartContents d-flex flex-row align-center flex-wrap">
-              <div className="cartItemTitle m-2" style={styles.border}>
+              <div className="cartItemTitle m-2">
                 <h3>{item.title}</h3>
               </div>
-              <div className="cartItemQuantity m-2" style={styles.border}>
+              <div className="cartItemQuantity m-2">
                 <h3>quantity: {item.quantity}</h3>
               </div>
-              <div className="cartItemPrice m-2" style={styles.border}>
+              <div className="cartItemPrice m-2">
                 <h3>${item.price}</h3>
               </div>
-              <button onClick={handleRemovedItem}>-</button>
+              <button onClick={handleRemovedItem} id={item._id} className="btn btn-primary">
+                remove
+              </button>
             </div>
           </div>
         ))}
         <div className="d-flex flex-row justify-space-between-lg">
-          <button onClick={handleCheckout}>checkout</button>
+          <button onClick={handleCheckout} className="btn btn-light">
+            checkout
+          </button>
           <h3>Total: ${totalPrice()}</h3>
         </div>
       </div>

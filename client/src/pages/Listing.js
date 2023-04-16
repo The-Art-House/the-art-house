@@ -1,19 +1,26 @@
 import React, { useState } from "react";
 import { useQuery } from "@apollo/client";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 import { useCartContext, CartProvider } from "../utils/cartContext";
+import { currentCart, setCurrentCart } from "../utils/cartContext";
+import { useNavigate, useParams, Navigate } from "react-router-dom";
 
 //Heavy lifitng of cart action within this script
 
 import { QUERY_SINGLE_LISTING } from "../utils/queries";
+import { UPDATE_LISTING_QUANTITY } from "../utils/mutations";
 
 const Home = () => {
   // state
-  const [state, dispatch] = useCartContext();
+  // const [state, dispatch] = useCartContext();
+  const [currentCart, setCurrentCart] = useState([]);
 
   const { listingId } = useParams();
   const { loading, data } = useQuery(QUERY_SINGLE_LISTING, { variables: { listingId: listingId } });
   const listing = data?.listing || [];
+  const navigate = useNavigate();
+
+  // const {loadingUpdateListingQuantity, dataUpdateListingQuantity} = useMutation(UPDATE_LISTING_QUANTITY, {variables: {listingId: listingId, quantity: listing.quantity - 1}});
 
   const styles = {
     img: {
@@ -27,17 +34,12 @@ const Home = () => {
   };
 
   function addtoCart() {
-    console.log(state);
-    dispatch({
-      type: "ADD_TO_CART",
-      item: {
-        id: listing._id,
-        item: listing.title,
-        price: listing.price,
-        quantity: 1,
-      },
-    });
-    console.log(state);
+    let cartStorage = JSON.parse(localStorage.getItem("cart"));
+    cartStorage.push(listing);
+    localStorage.setItem("cart", JSON.stringify(cartStorage));
+  }
+  function goToCart() {
+    navigate(`/cart`);
   }
 
   if (loading) {
@@ -45,29 +47,37 @@ const Home = () => {
   }
   return (
     <div className="d-flex flex-column align-center">
-      <div className=" d-flex flex-row w-100 justify-space-between-lg" style={styles.border}>
-        <div className="listingImage" style={styles.border}>
+      <div className=" d-flex flex-row w-100 justify-space-between-lg">
+        <div className="listingImage">
           <img src={listing.imgURL} alt={listing.title} style={styles.img} />
         </div>
-        <div className="w-50 text-center" style={styles.border}>
-          <div className="flex-row">
-            <p>Title:</p>
-            <p>{listing.title}</p>
+        <div className="d-flex flex-column justify-space-between w-50">
+          <div className="card w-75 m-auto">
+            <div className="w-50 m-auto text-center">
+              {/* <h5>Title:</h5> */}
+              <h1>{listing.title}</h1>
+            </div>
+            <div className="flex-row m-3">
+              <h5>Artist:</h5>
+              <h5>{listing.userId.name}</h5>
+            </div>
+            <div className="flex-row m-3">
+              <h5>Price:</h5>
+              <h5>${listing.price}.00</h5>
+            </div>
+            <div className="flex-row m-3">
+              <h5>Quantity:</h5>
+              <h5>{listing.quantity}</h5>
+            </div>
           </div>
-          <div className="flex-row">
-            <p>Artist:</p>
-            <p>{listing.userId.name}</p>
-          </div>
-          <div className="flex-row">
-            <p>Price:</p>
-            <p>{listing.price}</p>
-          </div>
-          <div className="flex-row">
-            <p>Quantity:</p>
-            <p>{listing.quantity}</p>
-          </div>
-          <div>
-            <button className="btn btn-light btn-cart" onClick={addtoCart}>Add to Cart</button>
+
+          <div className="d-flex flex-row w-75 justify-space-between m-auto">
+            <button className="btn btn-primary btn-cart m-auto" onClick={addtoCart}>
+              Add to Cart
+            </button>
+            {/* <button className="btn btn-light btn-cart" onClick={goToCart}>
+              Go to Cart
+            </button> */}
           </div>
         </div>
       </div>

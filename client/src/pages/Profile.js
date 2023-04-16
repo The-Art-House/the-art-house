@@ -18,14 +18,14 @@ const Profile = () => {
     variables: { profileId: profileId },
   });
   // profiles is an object instead of an array, so we need to fix that
-  const [formState, setFormState] = useState({
-    title: "",
-    tags: "",
-    price: "",
-    quantity: "",
-    imgURL: "",
-  });
-  const [addListing, { error, items }] = useMutation(ADD_LISTING);
+  // const [formState, setFormState] = useState({
+  //   title: "",
+  //   tags: "",
+  //   price: "",
+  //   quantity: "",
+  //   imgURL: "",
+  // });
+  // const [addListing, { error, items }] = useMutation(ADD_LISTING);
 
   // Check if data is returning from the `QUERY_ME` query, then the `QUERY_SINGLE_PROFILE` query
   const profiles = data?.me || [];
@@ -50,7 +50,7 @@ const Profile = () => {
   return (
     <div className="flex-column align-center">
       <h3>my gallery</h3>
-      <div className="card flex-row justify-space-between">
+      <div className="flex-row justify-space-around">
         {profiles.listings.map((listing) => (
           <div key={listing.id}>
             <img src={listing.imgURL} id={listing._id} onClick={handleClicked} style={{ margin: "5px", width: "350px", height: "200px" }} />

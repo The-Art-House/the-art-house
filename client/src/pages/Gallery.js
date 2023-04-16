@@ -19,6 +19,12 @@ const Gallery = () => {
     navigate(`listing/${event.target.id}`);
   }
 
+  let cartArr = [];
+  let cart = JSON.parse(localStorage.getItem("cart"));
+  if (cart === null) {
+    localStorage.setItem("cart", JSON.stringify(cartArr));
+  }
+
   return (
     <div className="flex-column">
       {/* <h3 className="align-left w-25">gallery</h3> */}

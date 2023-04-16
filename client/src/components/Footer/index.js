@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="container text-center mb-5">
         {location.pathname !== "/" && (
           <button className="btn btn-primary mb-3" onClick={() => navigate(-1)}>
-            &larr; Go Back
+            Go Back
           </button>
         )}
         <h4>&copy; {new Date().getFullYear()} - CGJCEM</h4>

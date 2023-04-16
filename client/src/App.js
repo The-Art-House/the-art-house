@@ -14,11 +14,12 @@ import Footer from "./components/Footer";
 // new
 import CreateListing from "./pages/CreateListing";
 import Cart from "./pages/Cart.js";
+import CheckOut from "./pages/CheckOut.js";
 
 // gallery page
 import Gallery from "./pages/Gallery";
 // cart state
-import {CartProvider} from "./utils/cartContext";
+import { CartProvider } from "./utils/cartContext";
 
 const httpLink = createHttpLink({
   uri: "/graphql",
@@ -46,9 +47,9 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-        <Router>
-          <div className="flex-column justify-flex-start min-100-vh">
-        <CartProvider>
+      <Router>
+        <div className="flex-column justify-flex-start min-100-vh">
+          <CartProvider>
             <Header />
             <div className="container">
               <Routes>
@@ -61,13 +62,14 @@ function App() {
                 <Route path="/" element={<Gallery />} />
                 <Route path="/createListing" element={<CreateListing />} />
                 <Route path="/cart" element={<Cart />} />
+                <Route path="/checkout" element={<CheckOut />} />
               </Routes>
             </div>
             <Footer />
-    </CartProvider>
-          </div>
-        </Router>
-      </ApolloProvider>
+          </CartProvider>
+        </div>
+      </Router>
+    </ApolloProvider>
   );
 }
 

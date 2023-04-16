@@ -16,8 +16,6 @@
 
 // export { CartProvider, useCartContext };
 
-
-
 import React, { useState, createContext, useContext } from "react";
 // import createId from "./createId";
 // export const CartContext = React.createContext();
@@ -27,11 +25,11 @@ const CartContext = createContext();
 const { Provider } = CartContext;
 
 const CartProvider = (props) => {
+  // const [state, dispatch] = useCartReducer({
+  //   items: [],
+  // });
 
-  const [state, dispatch] = useCartReducer({
-    items: [],
-  });
-
+  const [currentCart, setCurrentCart] = useState([]);
 
   // const [currentCart, setCurrentCart] = useState({
   //   items: [
@@ -73,11 +71,12 @@ const CartProvider = (props) => {
   //   return total;
   // };
 
-  return <CartContext.Provider value={[state, dispatch]} {...props} />;
+  return <CartContext.Provider value={[currentCart, setCurrentCart]} {...props} />;
 };
 
 const useCartContext = () => {
   return useContext(CartContext);
 };
 
-export { CartProvider, useCartContext };
+// export { CartProvider, useCartContext };
+export { CartProvider };

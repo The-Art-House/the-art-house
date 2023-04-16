@@ -3,11 +3,21 @@ import { Link } from "react-router-dom";
 
 import Auth from "../../utils/auth";
 
+// new
+import { useNavigate, useParams, Navigate } from "react-router-dom";
+
 const Header = () => {
+  // new
+  const navigate = useNavigate();
+
   const logout = (event) => {
     event.preventDefault();
     Auth.logout();
   };
+
+  function goToCart() {
+    navigate(`/cart`);
+  }
   const styles = {
     homeIcon: {
       border: "5px solid black",
@@ -33,20 +43,26 @@ const Header = () => {
         <div>
           {Auth.loggedIn() ? (
             <>
-              <Link className="btn btn-lg btn-primary m-2" to="/me">
-                View My Profile
+              <Link className="btn btn-lg btn-primary" to="/me">
+                my profile
               </Link>
               <button className="btn btn-lg btn-light m-2" onClick={logout}>
-                Logout
+                logout
+              </button>
+              <button className="btn btn-lg btn-primary m-" onClick={goToCart}>
+                cart
               </button>
             </>
           ) : (
             <>
               <Link className="btn btn-lg btn-primary m-2" style={styles.primaryButton} to="/login">
-                Login
+                login
               </Link>
               <Link className="btn btn-lg btn-light m-2" to="/signup">
-                Signup
+                signup
+              </Link>
+              <Link className="btn btn-lg btn-primary m-2" to="/cart">
+                cart
               </Link>
             </>
           )}
