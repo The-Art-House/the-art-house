@@ -44,6 +44,18 @@ export const REMOVE_SKILL = gql`
   }
 `;
 
+export const ADD_LISTING = gql`
+  mutation addListing($imgURL: String, $title: String, $price: Float, $quantity: Int, $tags: [String]) {
+    addListing(imgURL: $imgURL, title: $title, price: $price, quantity: $quantity, tags: $tags) {
+      title
+      price
+      quantity
+      tags
+      imgURL
+    }
+  }
+`;
+
 // export const UPDATE_LISTING_QUANTITY = gql`
 //   mutation updateListingQuantity($listingId: ID!, $quantity: Int!) {
 //     updateListingQuantity(listingId: $listingId, quantity: $quantity) {
@@ -59,15 +71,3 @@ export const REMOVE_SKILL = gql`
 //       }
 //   }
 // `;
-
-export const ADD_LISTING = gql`
-  mutation addListing($imgURL: String, $title: String, $price: Float, $quantity: Int, $tags: [String]) {
-    addListing(imgURL: $imgURL, title: $title, price: $price, quantity: $quantity, tags: $tags) {
-      title
-      price
-      quantity
-      tags
-      imgURL
-    }
-  }
-`;
