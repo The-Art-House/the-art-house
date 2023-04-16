@@ -4,6 +4,8 @@ import { useQuery } from "@apollo/client";
 import { useCartContext, CartProvider } from "../utils/cartContext";
 import { currentCart, setCurrentCart } from "../utils/cartContext";
 import { useNavigate, useParams, Navigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //Heavy lifitng of cart action within this script
 
@@ -37,6 +39,13 @@ const Home = () => {
     let cartStorage = JSON.parse(localStorage.getItem("cart"));
     cartStorage.push(listing);
     localStorage.setItem("cart", JSON.stringify(cartStorage));
+
+    toast.success(`Added to cart!`, {
+      position: "bottom-center",
+      autoClose: 7000,
+      closeOnClick: true,
+      theme: "dark",
+    });
   }
   function goToCart() {
     navigate(`/cart`);
@@ -81,6 +90,7 @@ const Home = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
