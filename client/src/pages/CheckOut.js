@@ -8,7 +8,7 @@ const CheckOut = () => {
     <div>
       <h2>Checkout</h2>
       <div>
-
+        
       </div>
     </div>
   );
