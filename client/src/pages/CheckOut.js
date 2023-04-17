@@ -22,10 +22,13 @@ const CheckOut = () => {
 
   const styles = {
     imgDiv: {
-      // width: "150px",
-      // height: "100px",
+      width: "150px",
+      height: "100px",
     },
-    img: {},
+    img: {
+      width: "150px",
+      height: "100px",
+    },
     border: {
       border: "1px solid black",
     },

@@ -11,7 +11,10 @@ const Cart = () => {
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")));
 
   const styles = {
-    img: {},
+    img: {
+      width: "300px",
+      height: "200px",
+    },
     border: {
       border: "1px solid black",
     },
