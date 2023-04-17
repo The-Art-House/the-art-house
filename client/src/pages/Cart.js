@@ -11,11 +11,7 @@ const Cart = () => {
   const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")));
 
   const styles = {
-    img: {
-      //   width: "250px",
-      //   height: "100px",
-      //   border: "1px solid black",
-    },
+    img: {},
     border: {
       border: "1px solid black",
     },
@@ -47,17 +43,6 @@ const Cart = () => {
     return total;
   }
 
-  if (cart === []) {
-    return (
-      <div className="w-100">
-        <div className="m-auto" style={styles.cartDisplayContent}>
-          <h3>my cart</h3>
-          <h3>Cart is empty</h3>
-        </div>
-      </div>
-    );
-  }
-
   function displayCart(isEmptyOrNot) {
     if (isEmptyOrNot) {
       return (
@@ -65,14 +50,14 @@ const Cart = () => {
           {tempCart.map((item) => (
             <div className="cartContent d-flex flex-row justify-space-between-md">
               <div className="cartItemImg">
-                <img src={item.imgURL} />
+                <img src={item.imgURL} style={styles.img} />
               </div>
               <div className="cartContents d-flex flex-row align-center flex-wrap">
                 <div className="cartItemTitle m-2">
                   <h3>{item.title}</h3>
                 </div>
                 <div className="cartItemQuantity m-2">
-                  <h3>quantity: {item.quantity}</h3>
+                  <h3>quantity: 1</h3>
                 </div>
                 <div className="cartItemPrice m-2">
                   <h3>${item.price}</h3>
@@ -87,7 +72,7 @@ const Cart = () => {
             <button onClick={handleCheckout} className="btn btn-light">
               checkout
             </button>
-            <h3>Total: ${totalPrice()}</h3>
+            <h3 className="">Total: ${totalPrice()}</h3>
           </div>
         </div>
       );
@@ -105,7 +90,7 @@ const Cart = () => {
   return (
     <div className="w-100">
       <div className="m-auto" style={styles.cartDisplayContent}>
-        <h3>my cart</h3>
+        <h3 className="">my cart</h3>
         {displayCart(tempCart.length > 0)}
         {/* {tempCart.map((item) => (
           <div className="cartContent d-flex flex-row justify-space-between-md">

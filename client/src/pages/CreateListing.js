@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ADD_LISTING } from "../utils/mutations";
 import { useQuery, useMutation } from "@apollo/client";
 import Auth from "../utils/auth";
-import { useNavigate, useParams, Navigate } from "react-router-dom";
+import { useNavigate, useParams, Navigate, Link, useLocation } from "react-router-dom";
 
 const CreateListing = () => {
   const [imageState, setImageState] = useState("https://placehold.co/350x300?text=Preview");
@@ -84,9 +84,12 @@ const CreateListing = () => {
             {data ? (
               <div>
                 <p>Success! You created a new listing!</p>
-                <button type="button" onClick={handleReturn} className="btn btn-primary btn-cart">
+                {/* <button type="button" onClick={handleReturn} className="btn btn-primary btn-cart">
                   Return to My Listings
-                </button>
+                </button> */}
+                <Link className="btn btn-primary btn-cart" to="/me">
+                  Return to My Listings
+                </Link>
               </div>
             ) : (
               <form className="d-flex flex-column">

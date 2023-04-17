@@ -11,6 +11,7 @@ import Auth from "../utils/auth";
 import { ADD_LISTING } from "../utils/mutations";
 
 const Profile = () => {
+  // window.location.reload();
   const { profileId } = useParams();
 
   // If there is no `profileId` in the URL as a parameter, execute the `QUERY_ME` query instead for the logged in user's information

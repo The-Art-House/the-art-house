@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Auth from "../utils/auth";
 
 const Login = (props) => {
@@ -31,6 +34,13 @@ const Login = (props) => {
       Auth.login(data.login.token);
     } catch (e) {
       console.error(e);
+
+      toast.error(`No Profile with this email found!`, {
+        position: "bottom-center",
+        autoClose: false,
+        closeOnClick: true,
+        theme: "dark",
+      });
     }
 
     // clear form values
@@ -61,7 +71,12 @@ const Login = (props) => {
               </form>
             )}
 
-            {error && <div className="my-3 p-3 bg-danger text-white">{error.message}</div>}
+            {/* {error && <div className="my-3 p-3 bg-danger text-white">{error.message}</div>} */}
+            {error && (
+              <div className="">
+                <ToastContainer />
+              </div>
+            )}
           </div>
         </div>
       </div>

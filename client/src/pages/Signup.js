@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { ADD_PROFILE } from "../utils/mutations";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Auth from "../utils/auth";
 
 const Signup = () => {
@@ -37,6 +40,12 @@ const Signup = () => {
       Auth.login(data.addProfile.token);
     } catch (e) {
       console.error(e);
+      toast.error(`Please fill all fields!`, {
+        position: "bottom-center",
+        autoClose: false,
+        closeOnClick: true,
+        theme: "dark",
+      });
     }
   };
 
@@ -62,7 +71,11 @@ const Signup = () => {
               </form>
             )}
 
-            {error && <div className="my-3 p-3 bg-danger text-white">{error.message}</div>}
+            {error && (
+              <div className="">
+                <ToastContainer />
+              </div>
+            )}
           </div>
         </div>
       </div>
