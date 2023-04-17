@@ -24,6 +24,8 @@ const Home = () => {
 
   // const {loadingUpdateListingQuantity, dataUpdateListingQuantity} = useMutation(UPDATE_LISTING_QUANTITY, {variables: {listingId: listingId, quantity: listing.quantity - 1}});
 
+  const { listingQuantity, setListingQuantity } = useState(listing.quantity);
+
   const styles = {
     img: {
       width: "550px",
@@ -36,6 +38,8 @@ const Home = () => {
   };
 
   function addtoCart() {
+    console.log(listingQuantity);
+
     let cartStorage = JSON.parse(localStorage.getItem("cart"));
     cartStorage.push(listing);
     localStorage.setItem("cart", JSON.stringify(cartStorage));
@@ -74,10 +78,10 @@ const Home = () => {
               <h5>Price:</h5>
               <h5>${listing.price}.00</h5>
             </div>
-            {/* <div className="flex-row m-3">
+            <div className="flex-row m-3">
               <h5>Quantity:</h5>
               <h5>{listing.quantity}</h5>
-            </div> */}
+            </div>
           </div>
 
           <div className="d-flex flex-row w-75 justify-space-between m-auto">
