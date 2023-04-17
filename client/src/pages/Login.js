@@ -35,7 +35,7 @@ const Login = (props) => {
     } catch (e) {
       console.error(e);
 
-      toast.error(`No Profile with this email found!`, {
+      toast.error(`no profile found!`, {
         position: "bottom-center",
         autoClose: false,
         closeOnClick: true,

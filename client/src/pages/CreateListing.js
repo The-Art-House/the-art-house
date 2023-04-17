@@ -5,7 +5,7 @@ import Auth from "../utils/auth";
 import { useNavigate, useParams, Navigate, Link, useLocation } from "react-router-dom";
 
 const CreateListing = () => {
-  const [imageState, setImageState] = useState("https://placehold.co/350x300?text=Preview");
+  const [imageState, setImageState] = useState("https://placehold.co/350x300?text=preview");
   const navigate = useNavigate();
   // const [login, { error, data }] = useMutation(LOGIN_USER);
   const [formState, setFormState] = useState({
@@ -77,13 +77,13 @@ const CreateListing = () => {
   return (
     <div>
       <div className="d-flex flex-column align-center">
-        <h3 className="">Create New Listing</h3>
+        <h3 className="">create new listing</h3>
 
         <div className=" d-flex flex-row w-75 justify-space-around-md text-center">
           <div className="w-50">
             {data ? (
               <div>
-                <p>Success! You created a new listing!</p>
+                <p>success! you created a new listing!</p>
                 {/* <button type="button" onClick={handleReturn} className="btn btn-primary btn-cart">
                   Return to My Listings
                 </button> */}
@@ -109,7 +109,7 @@ const CreateListing = () => {
         </div>
         <div>
           <button type="submit" onClick={handleFormSubmit} className="btn btn-primary btn-cart">
-            Create Listing
+            create listing
           </button>
         </div>
         {error && <div className="my-3 p-3 bg-danger text-white">{"Submission not successfull. Please fill in all fields!"}</div>}

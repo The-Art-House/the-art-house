@@ -74,15 +74,15 @@ const Home = () => {
               <h5>Price:</h5>
               <h5>${listing.price}.00</h5>
             </div>
-            <div className="flex-row m-3">
+            {/* <div className="flex-row m-3">
               <h5>Quantity:</h5>
               <h5>{listing.quantity}</h5>
-            </div>
+            </div> */}
           </div>
 
           <div className="d-flex flex-row w-75 justify-space-between m-auto">
             <button className="btn btn-primary btn-cart m-auto" onClick={addtoCart}>
-              Add to Cart
+              add to cart
             </button>
             {/* <button className="btn btn-light btn-cart" onClick={goToCart}>
               Go to Cart
